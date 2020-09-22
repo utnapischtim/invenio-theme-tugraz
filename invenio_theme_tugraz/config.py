@@ -90,6 +90,7 @@ DEPOSITS_HEADER_TEMPLATE = "invenio_theme_tugraz/header.html"
 RECORDS_UI_ENDPOINTS["recid"].update(
     template="invenio_theme_tugraz/record_landing_page.html"
 )
+"""override the default record landing page"""
 
 SEARCH_UI_SEARCH_TEMPLATE = "invenio_theme_tugraz/search.html"
 """override the default search page"""

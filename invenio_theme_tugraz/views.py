@@ -8,10 +8,10 @@
 
 """invenio module for TUGRAZ theme."""
 
-from flask import Blueprint, render_template
-from flask_babelex import gettext as _
 from typing import Dict
+
 from elasticsearch_dsl.utils import AttrDict
+from flask import Blueprint, render_template
 
 from .search import FrontpageRecordsSearch
 
@@ -33,15 +33,18 @@ def index():
 
 
 @blueprint.app_template_filter("lower_case")
-def lower_case(str):
+def lower_case(str: str):
+    """return the lowered string"""
     return str.lower()
 
 
 @blueprint.app_template_filter("make_dict_like")
-def make_dict_like(access_right: str) -> Dict[str, str]:
-    return {"access_right": access_right}
+def make_dict_like(value: str, key: str) -> Dict[str, str]:
+    """convert the value to a dict like structure in the form of a key -> value pair"""
+    return {key: value}
 
 
 @blueprint.app_template_filter("cast_to_dict")
 def cast_to_dict(attr_dict: AttrDict) -> Dict[str, str]:
+    """return the dict structure of AttrDict variable"""
     return attr_dict.to_dict()
