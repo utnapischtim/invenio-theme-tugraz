@@ -19,6 +19,7 @@ import pytest
 from flask import Flask
 from flask_babelex import Babel
 from invenio_i18n import InvenioI18N
+from invenio_records_ui.views import create_blueprint_from_app
 
 from invenio_theme_tugraz import inveniothemetugraz
 from invenio_theme_tugraz.views import blueprint

@@ -9,8 +9,7 @@
 """Sphinx configuration."""
 
 import os
-
-import sphinx.environment
+from typing import Dict
 
 # -- General configuration ------------------------------------------------
 
@@ -57,7 +56,7 @@ author = u"mojib wali"
 # The short X.Y version.
 
 # Get the version string. Cannot be done with import!
-g = {}
+g: Dict[str, str] = {}
 with open(
     os.path.join(os.path.dirname(__file__), "..", "invenio_theme_tugraz", "version.py"),
     "rt",
@@ -336,3 +335,5 @@ intersphinx_mapping = {
 
 # Autodoc configuraton.
 autoclass_content = "both"
+
+nitpick_ignore = [("py:class", "elasticsearch_dsl.utils.AttrDict")]
