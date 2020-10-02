@@ -80,7 +80,7 @@
 
         <p class="hidden-xs">
           <a href="{{record_url}}">
-            {{ r.descriptions[0].description|striptags|truncate(300) }}
+            {{ r.descriptions[0].description | striptags | truncate(300) }}
           </a>
         </p>
 
@@ -88,14 +88,15 @@
           <div class="two column row">
             <div class="left floated column">
               <small>
-                {% trans user=userprofile, date=creation_date|dateformat('long') %}Uploaded on
-                {{date}}{% endtrans %}
+                {% trans user=userprofile, date=creation_date | dateformat('long')%}
+                Uploaded on {{date}}
+                {% endtrans %}
               </small>
             </div>
 
             <div class="right floated column">
               <span class="access-right">
-                {{ r.access_right | make_dict_like | vocabulary_title('access_right') | lower_case }}
+                {{ r.access_right | make_dict_like('access_right') | vocabulary_title('access_right') | lower_case }}
               </span>
             </div>
           </div>
