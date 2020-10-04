@@ -1,0 +1,35 @@
+{#
+  Copyright (C) 2020 CERN.
+  Copyright (C) 2020 Northwestern University.
+
+  Invenio RDM Records is free software; you can redistribute it and/or modify
+  it under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+<div>
+  <h3>{{ _('Description')}}:</h3>
+
+  <div class="description-text">
+    {{ record.metadata.get('descriptions', [{'description': 'No description'}])[0].description | safe }}
+  </div>
+</div>
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+     // https://stackoverflow.com/a/22633789
+     jQuery(".description-text").each(function () {
+         let text = $(this).text();
+
+         if (text.length > 500) {
+             let shorted_text = text.substr(0, 486)
+                 + '<span class="elipsis" style="display: none;">'
+                              + text.substr(486)
+                 + '</span><a class="elipsis" href="#">View more...</a>'
+             jQuery(this).html(shorted_text);
+         }
+     });
+     jQuery(".description-text > a.elipsis").click(function (e) {
+         e.preventDefault();
+         jQuery(this).prev('span.elipsis').fadeToggle(500);
+     });
+ });
+</script>

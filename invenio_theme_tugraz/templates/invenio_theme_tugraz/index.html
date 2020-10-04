@@ -40,8 +40,8 @@
       <h2>{{_('Recent uploads')}}</h2>
 
       {%- for r in records %}
-      {%- set creation_date = r._created|from_isodatetime -%}
-      {%- set record_url = url_for('invenio_records_ui.recid', pid_value=r['recid']) %}
+      {%- set creation_date = r._created | from_isodatetime -%}
+      {%- set record_url = url_for('invenio_records_ui.recid', pid_value=r.id) %}
 
       <article>
         <!--TODO:

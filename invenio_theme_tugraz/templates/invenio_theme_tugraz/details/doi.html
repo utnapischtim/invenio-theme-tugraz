@@ -9,7 +9,7 @@
   origin: invenio-rdm-records/doi.html
 #}
 
-{%- set id_doi = record.identifiers | doi_identifier %}
+{%- set id_doi = record.metadata.identifiers | doi_identifier %}
 
 <div>
   <div class="get-badge"

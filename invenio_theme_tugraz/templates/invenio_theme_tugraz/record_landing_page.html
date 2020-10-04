@@ -16,37 +16,37 @@
 {{ webpack['invenio-rdm-records-theme.css'] }}
 {%- endblock css %}
 
-{%- from "invenio_rdm_records/macros/files.html" import file_list_box, preview_file_box %}
+{%- from "invenio_theme_tugraz/macros/files.html" import file_list_box, preview_file_box %}
 
 {%- block page_body %}
 <div class="ui container">
   <div class="ui padded relaxed grid">
     <div class="two column row">
-      <div class="ten wide column">
+      <div class="eight wide large screen column ten wide computer column">
         {%- block record_body %}
 
         <div class="left floated left aligned column">
           <span class="ui label teal" title="Publication date">
-            {{ record.publication_date|to_date|format_date(format='long') }}
+            {{ record.metadata.publication_date|to_date|format_date(format='long') }}
           </span>
 
           <span class="ui label record-version">
-            Version {{ record.version }}
+            Version {{ record.metadata.version }}
           </span>
 
           <span class="ui label grey">
-            {{ record.resource_type | vocabulary_title('resource_type') }}
+            {{ record.metadata.resource_type | vocabulary_title('resource_type') }}
           </span>
         </div>
 
-        <h1>{{ record.titles[0].title }}</h1>
+        <h1>{{ record.metadata.titles[0].title }}</h1>
         <p>
-          {%- include "invenio_rdm_records/details/creators.html" %}
+          {%- include "invenio_theme_tugraz/details/creators.html" %}
         </p>
 
         {%- if record.contributors %}
         <p>
-          {%- include "invenio_rdm_records/details/contributors.html" %}
+          {%- include "invenio_theme_tugraz/details/contributors.html" %}
         </p>
         {%- endif %}
 
@@ -58,20 +58,24 @@
 
             <div class="right floated column">
               {#
-              {%- include "invenio_rdm_records/details/contact.html" %}
+              {%- include "invenio_theme_tugraz/details/contact.html" %}
               #}
 
+
               <span class="access-right">
-                {{ record | vocabulary_title('access_right') | lower_case }}
+                {{ record.access | vocabulary_title('access_right') | lower }}
+                (
+                {%- for license in record.metadata.licenses%}
+                <a href="{{license.uri}}" title="{{license.license}}">{{license.identifier}}</a>
+                {% endfor %}
+                )
               </span>
             </div>
           </div>
         </div>
 
-        {%- include "invenio_rdm_records/details/citation.html" %}
-        {%- include "invenio_rdm_records/details/keywords.html" %}
-        {%- include "invenio_rdm_records/details/description.html" %}
-        {%- include "invenio_rdm_records/details/licenses.html" %}
+        <hr />
+        {%- include "invenio_theme_tugraz/details/description.html" %}
 
         {# files #}
         {%- if record.files and record | can_list_files %}
@@ -91,11 +95,9 @@
         {%- endblock record_body %}
       </div>
 
-      <div class="six wide column">
+      <div class="eight wide large screen column six wide computer column">
         {% block sidebar %}
-        <div class="ui segment rdm-sidebar">
-          {%- include "invenio_rdm_records/details/side_bar.html" %}
-        </div>
+        {%- include "invenio_theme_tugraz/details/side_bar.html" %}
         {% endblock sidebar %}
       </div>
     </div>

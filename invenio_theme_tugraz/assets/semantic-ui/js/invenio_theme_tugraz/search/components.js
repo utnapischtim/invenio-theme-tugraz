@@ -38,7 +38,7 @@ export const RDMRecordResultsListItem = ({ result, index }) => {
   );
   const access = _.get(
     result,
-    "metadata.access_right",
+    "access.access_right",
     "No access rights"
   );
   const creators = _.get(
@@ -61,9 +61,9 @@ export const RDMRecordResultsListItem = ({ result, index }) => {
           <Label className="record-version">{version}</Label>
           <Label className="grey">{resourceType}</Label>
         </div>
-        <Item.Header href={`/records/${result.pid}`}>{title}</Item.Header>
+        <Item.Header href={`/records/${result.id}`}>{title}</Item.Header>
         <Creators creators={creators}/>
-        <Item.Description href={`/records/${result.pid}`}>
+        <Item.Description href={`/records/${result.id}`}>
           {_truncate(description, { length: 350 })}
         </Item.Description>
         <Grid columns={2}>
