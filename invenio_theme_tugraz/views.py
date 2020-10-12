@@ -26,10 +26,9 @@ blueprint = Blueprint(
 @blueprint.route("/")
 def index():
     """Render frontpage view."""
-    records = FrontpageRecordsSearch()[:5].sort("-_created").execute()
+    records = FrontpageRecordsSearch()[:5].sort("created").execute()
     return render_template(
-        "invenio_theme_tugraz/index.html",
-        records=records,
+        "invenio_theme_tugraz/index.html", records=records
     )  # pragma: no cover
 
 
