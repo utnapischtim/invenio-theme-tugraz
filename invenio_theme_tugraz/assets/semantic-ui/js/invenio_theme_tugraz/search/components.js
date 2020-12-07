@@ -10,78 +10,57 @@
  * origin: invenio_app_rdm/search/components.js
  */
 
-import React from "react";
-import { Card, Item, Input, Label, Button, Grid } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Card, Item, Input, Label, Button, Grid, Checkbox, List, } from "semantic-ui-react";
+import { BucketAggregation, Toggle } from "react-searchkit";
 import _ from "lodash";
 import _truncate from "lodash/truncate";
+import Overridable from "react-overridable";
+import { SearchBar } from "@js/invenio_search_ui/components";
 
 export const RDMRecordResultsListItem = ({ result, index }) => {
-  const description = _.get(
-    result,
-    "metadata.descriptions[0].description",
-    "No description"
-  );
-  const version = _.get(
-    result,
-    "metadata.version",
-    ""
-  );
-  const publicationDate = _.get(
-    result,
-    "metadata.publication_date",
-    "No metadata"
-  );
-  const resourceType = _.get(
-    result,
-    "metadata.resource_type.type",
-    "No resource type"
-  );
-  const access = _.get(
-    result,
-    "access.access_right",
-    "No access rights"
-  );
-  const creators = _.get(
-    result,
-    "metadata.creators",
-    []
-  );
-  const uploadedDate = _.get(result, "metadata.publication_date");
-  const title = _.get(
-    result,
-    "metadata.titles[0].title",
-    "No title"
-  );
+  const description = _.get(result, "metadata.description", "No description");
+  const version = _.get(result, "metadata.version", "");
+  const creators = _.get(result, "metadata.creators", []);
+  const title = _.get(result, "metadata.title", "No title");
+  const subjects = _.get(result, "metadata.subjects", null);
+
+  const publicationDate = _.get(result, "ui.publication_date_l10n_long", "No publication date found");
+  const createdDate = _.get(result, "ui.created_date_l10n_long", "No creation date found.");
+  const resourceType = _.get(result, "ui.resource_type", "No resource type");
+  const access = _.get(result, "ui.access_right.title", "No access rights");
+  const accessRightCategory = _.get(result, "ui.access_right.category", "closed");
+  const accessRightIcon = _.get(result, "ui.access_right.icon", "closed");
+
+  const href = `/records/${result.id}`;
 
   return (
     <Item key={index}>
       <Item.Content>
         <div className="badges">
-          <Label className="teal">{publicationDate}</Label>
-          <Label className="record-version">{version}</Label>
-          <Label className="grey">{resourceType}</Label>
+          <Label className="record-version">
+            {publicationDate} {version ? `(${version})` : null}
+          </Label>
+          <Label className="teal">
+            {resourceType}
+          </Label>
+          <Label className={`access-right ${accessRightCategory}`}>
+            <i className={`icon ${accessRightIcon}`}></i>
+            {access}
+          </Label>
         </div>
-        <Item.Header href={`/records/${result.id}`}>{title}</Item.Header>
+        <Item.Header href={href}>{title}</Item.Header>
         <Creators creators={creators}/>
-        <Item.Description href={`/records/${result.id}`}>
-          {_truncate(description, { length: 350 })}
+        <Item.Description href={href}>
+          {_truncate(description.replace(/(<([^>]+)>)/ig, ''), { length: 350 })}
         </Item.Description>
-        <Grid columns={2}>
-          <Grid.Row>
-            <Grid.Column>
-              {uploadedDate && <small>Uploaded on {uploadedDate}</small>}
-            </Grid.Column>
-            <Grid.Column>
-              {access && <span className="access-right">{access}</span>}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Footer subjects={subjects} createdDate={createdDate}/>
       </Item.Content>
     </Item>
   );
 };
 
-export const Creators = ({creators}) => {
+const Creators = ({creators}) => {
   const creatorTags = creators.map((creator, index) => {
     return <Creator key={index} creator={creator}/>;
   });
@@ -93,13 +72,239 @@ export const Creators = ({creators}) => {
   );
 };
 
-export const Creator = ({creator}) => {
+const Identifiers = ({creator}) => {
+  return (
+    <div className="identifiers">
+      {_.isObject(creator.identifiers) && creator.identifiers.hasOwnProperty("orcid") &&
+       <Orcid creator={creator}/>
+      }
+    </div>
+  );
+};
+
+const Orcid = ({creator}) => {
+  const href = `https://orcid.org/${creator.identifiers.orcid}`
+
+  return (
+    <a href={href} target="_blank">
+      <img className="inline-orcid" src="/static/extra/orcid.png"/>
+    </a>
+  );
+};
+
+const Creator = ({creator}) => {
   return (
     <div className="creator">
-      <a href="https://orcid.org/{creator.identifiers.Orcid}" target="_blank">
-        <img className="inline-orcid" src="/static/extra/orcid.png"/>
-      </a>
+      <Identifiers creator={creator}/>
       <span className="text-muted">{creator.name}</span>
     </div>
+  );
+};
+
+const Footer = ({subjects, createdDate}) => {
+  return (
+    <Item.Extra>
+      {subjects && subjects.map((subject, index) => (
+        <Label key={index} size="tiny">
+          {subject.subject}
+        </Label>
+      ))}
+      {createdDate && (
+        <div>
+          <small>
+            Uploaded on <span>{createdDate}</span>
+          </small>
+        </div>
+      )}
+    </Item.Extra>
+  );
+};
+
+// TODO: Update this according to the full List item template?
+export const RDMRecordResultsGridItem = ({ result, index }) => {
+  const description = _.get(result, "metadata.description", "No description");
+  return (
+    <Card fluid key={index} href={`/records/${result.pid}`}>
+      <Card.Content>
+        <Card.Header>{result.metadata.title}</Card.Header>
+        <Card.Description>
+          {_truncate(description, { length: 200 })}
+        </Card.Description>
+      </Card.Content>
+    </Card>
+  );
+};
+
+export const RDMRecordSearchBarContainer = () => {
+  return (
+    <Overridable id={"SearchApp.searchbar"}>
+      <SearchBar />
+    </Overridable>
+  );
+};
+
+export const RDMRecordSearchBarElement = ({
+  placeholder: passedPlaceholder,
+  queryString,
+  onInputChange,
+  executeSearch,
+}) => {
+  const placeholder = passedPlaceholder || "Search";
+  const onBtnSearchClick = () => {
+    executeSearch();
+  };
+  const onKeyPress = (event) => {
+    if (event.key === "Enter") {
+      executeSearch();
+    }
+  };
+  return (
+    <Input
+      action={{
+        icon: "search",
+        onClick: onBtnSearchClick,
+        className: "search",
+      }}
+      placeholder={placeholder}
+      onChange={(event, { value }) => {
+        onInputChange(value);
+      }}
+      value={queryString}
+      onKeyPress={onKeyPress}
+    />
+  );
+};
+
+export const RDMRecordFacetsValues = ({
+  bucket,
+  isSelected,
+  onFilterClicked,
+  getChildAggCmps,
+}) => {
+  const childAggCmps = getChildAggCmps(bucket);
+  const [isActive, setisActive] = useState(false);
+  const hasChildren = childAggCmps && childAggCmps.props.buckets.length > 0;
+  return (
+    <List.Item key={bucket.key}>
+      <div
+        className={`title ${hasChildren ? "" : "facet-subtitle"} ${
+          isActive ? "active" : ""
+        }`}
+      >
+        <List.Content floated="right">
+          <Label circular>{bucket.doc_count}</Label>
+        </List.Content>
+        {hasChildren ? (
+          <i
+            className={`angle ${isActive ? "down" : "right"} icon`}
+            onClick={() => setisActive(!isActive)}
+          ></i>
+        ) : null}
+        <Checkbox
+          label={bucket.label}
+          value={bucket.key}
+          onClick={() => onFilterClicked(bucket.key)}
+          checked={isSelected}
+        />
+      </div>
+      <div className={`content facet-content ${isActive ? "active" : ""}`}>
+        {childAggCmps}
+      </div>
+    </List.Item>
+  );
+};
+
+const SearchHelpLinks = () => {
+  return (
+    <Overridable id={"RdmSearch.SearchHelpLinks"}>
+      <Grid className="padded-small">
+        <Grid.Row className="no-padded">
+          <Grid.Column>
+            <Card className="borderless-facet">
+              <Card.Content>
+                <a>Advanced search</a>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row className="no-padded">
+          <Grid.Column>
+            <Card className="borderless-facet">
+              <Card.Content>
+                <a>Search guide</a>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Overridable>
+  );
+};
+
+export const RDMRecordFacets = ({ aggs, currentResultsState }) => {
+  return (
+    <>
+      <Toggle
+        title="Versions"
+        label="View all versions"
+        filterValue={["all_versions", "true"]}
+      />
+      {aggs.map((agg) => {
+        return (
+          <div key={agg.title} className="ui accordion">
+            <BucketAggregation title={agg.title} agg={agg} />
+          </div>
+        );
+      })}
+      <SearchHelpLinks />
+    </>
+  );
+};
+
+export const RDMBucketAggregationElement = ({ title, containerCmp }) => {
+  return (
+    <Card className="borderless-facet">
+      <Card.Content>
+        <Card.Header>{title}</Card.Header>
+      </Card.Content>
+      <Card.Content>{containerCmp}</Card.Content>
+    </Card>
+  );
+};
+
+export const RDMToggleComponent = ({
+  updateQueryFilters,
+  userSelectionFilters,
+  filterValue,
+  label,
+  title,
+  isChecked,
+}) => {
+  const _isChecked = (userSelectionFilters) => {
+    const isFilterActive =
+      userSelectionFilters.filter((filter) => filter[0] === filterValue[0])
+        .length > 0;
+    return isFilterActive;
+  };
+
+  const onToggleClicked = () => {
+    updateQueryFilters(filterValue);
+  };
+
+  var isChecked = _isChecked(userSelectionFilters);
+  return (
+    <Card className="borderless-facet">
+      <Card.Content>
+        <Card.Header>{title}</Card.Header>
+      </Card.Content>
+      <Card.Content>
+        <Checkbox
+          toggle
+          label={label}
+          onClick={onToggleClicked}
+          checked={isChecked}
+        />
+      </Card.Content>
+    </Card>
   );
 };

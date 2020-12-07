@@ -22,13 +22,19 @@
     },
     {
       "aggName": "resource_type",
-      "field": "resource_type",
-      "title": "Resource Type"
+      "field": "resource_type.type",
+      "title": "Resource Type",
+      "childAgg": {
+        "aggName": "subtype",
+        "field": "resource_type.subtype",
+        "title": "Resource Type"
+      }
     }
   ],
   "appId": "rdm-search",
   "initialQueryState": {
-    "hiddenParams": null
+    "hiddenParams": null,
+    "size": 10
   },
   "layoutOptions": {
     "gridView": false,
@@ -54,25 +60,20 @@
   "searchApi": {
     "axios": {
       "headers": {
-        "Accept": "application/json"
+        "Accept": "application/vnd.inveniordm.v1+json"
       },
       "url": "/api/records",
       "withCredentials": true
     }
   },
+  "sortOrderDisabled": true,
   "sortOptions": [
     {
-      "default": true,
-      "defaultOnEmptyString": false,
       "sortBy": "bestmatch",
-      "sortOrder": "asc",
       "text": "Best match"
     },
     {
-      "default": false,
-      "defaultOnEmptyString": true,
       "sortBy": "newest",
-      "sortOrder": "asc",
       "text": "Newest"
     }
   ]
