@@ -30,22 +30,22 @@
           <img src="{{ url_for('static', filename=config.INVENIO_THEME_TUGRAZ_ICON)}}" height="20px" />
         </a>
         <div class="spacer-long"></div>
-        <div class="ui inverted horizontal divider"><span class="text-color">{{_ ("Or")}}</span></div>
+        <div class="ui inverted horizontal divider"><span class="text-color">{{_("Or")}}</span></div>
         {%- endif %}
 
         {%- block form_outer %}
         {%- with form = login_user_form %}
         <div style="padding-bottom: 20px;padding-top: 6px;">
-        <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form" class="ui big form">
-          {{ form.hidden_tag() }}
-          {{ form_errors(form) }}
-          {{ render_field(form.email, icon="user icon", autofocus=True, errormsg=False) }}
-          {{ render_field(form.password, icon="lock icon", errormsg=False) }}
-          <button type="submit" class="ui fluid large submit button">
-            <i class="ui sign-in icon"></i>{{ _('Log In') }}
-          </button>
-        </form>
-      </div>
+          <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form" class="ui big form">
+            {{ form.hidden_tag() }}
+            {{ form_errors(form) }}
+            {{ render_field(form.email, icon="user icon", autofocus=True, errormsg=False) }}
+            {{ render_field(form.password, icon="lock icon", errormsg=False) }}
+            <button type="submit" class="ui fluid large submit button">
+              <i class="ui sign-in icon"></i>{{ _('Log In') }}
+            </button>
+          </form>
+        </div>
         {%- endwith %}
         {%- endblock form_outer %}
         <div class="divider hidden"></div>
@@ -65,7 +65,7 @@
       {%- if security.recoverable %}
       <div class="ui basic segment padded">
         <a class="ui inverted header tiny"
-          href="{{ url_for_security('forgot_password') }}">{{ _('Forgot password?') }}</a>
+           href="{{ url_for_security('forgot_password') }}">{{ _('Forgot password?') }}</a>
       </div>
       {%- endif %}
       {%- endblock recoverable %}

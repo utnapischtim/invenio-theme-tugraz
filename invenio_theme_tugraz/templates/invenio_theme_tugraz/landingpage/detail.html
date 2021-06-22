@@ -29,15 +29,15 @@
             </div>
             <p>
               {% if record.is_published %}
-                You are previewing changes that have not yet been published.
+              You are previewing changes that have not yet been published.
               {% endif %}
 
               {% if not record.is_published and record.versions.index == 1 %}
-                You are previewing a new record that has not yet been published.
+              You are previewing a new record that has not yet been published.
               {% endif %}
 
               {% if not record.is_published and record.versions.index > 1 %}
-                You are previewing a new record version that has not yet been published.
+              You are previewing a new record version that has not yet been published.
               {% endif %}
             </p>
           </div>
@@ -60,9 +60,9 @@
         <div class="column">
           <div class="row">
             <p>
-            {% trans link_start=('<a href="' + record.links.latest_html + '"><b>')|safe, link_end='</b></a>'|safe %}
-            There is a {{ link_start }}newer version{{ link_end }} of the record available.
-            {% endtrans %}
+              {% trans link_start=('<a href="' + record.links.latest_html + '"><b>')|safe, link_end='</b></a>'|safe %}
+              There is a {{ link_start }}newer version{{ link_end }} of the record available.
+              {% endtrans %}
             </p>
           </div>
         </div>
@@ -78,12 +78,12 @@
     <div class="two column row top-padded">
       <div class="eleven wide column">
         {% if record.access.record == 'restricted' %}
-          <div class="ui {{ record.ui.access_status.message_class }} message">
-            <strong><i class="{{ record.ui.access_status.icon }} icon"></i>{{ record.ui.access_status.title_l10n }}</strong> {{ record.ui.access_status.description_l10n }}
-            {% if record.access.embargo.reason %}
-            <p>Reason: {{ record.access.embargo.reason }}</p>
-            {% endif %}
-          </div>
+        <div class="ui {{ record.ui.access_status.message_class }} message">
+          <strong><i class="{{ record.ui.access_status.icon }} icon"></i>{{ record.ui.access_status.title_l10n }}</strong> {{ record.ui.access_status.description_l10n }}
+          {% if record.access.embargo.reason %}
+          <p>Reason: {{ record.access.embargo.reason }}</p>
+          {% endif %}
+        </div>
         {% endif %}
         {%- block record_body -%}
         {%- block record_header -%}
@@ -112,51 +112,51 @@
         <p>{%- include "invenio_app_rdm/records/details/doi.html" %}</p>
         {%- include "invenio_app_rdm/records/details/subjects.html" %}
         <div class="top-padded">
-        {%- include "invenio_app_rdm/records/details/description.html" %}
+          {%- include "invenio_app_rdm/records/details/description.html" %}
         </div>
         <div class="top-padded">
-        {%- include "invenio_app_rdm/records/details/licenses.html" %}
+          {%- include "invenio_app_rdm/records/details/licenses.html" %}
         </div>
         {%- endblock record_content -%}
 
         {# files #}
         {%- block record_files -%}
         {%- if record.files.enabled -%}
-          {%- if permissions.can_read_files -%}
-            {# record has files AND user can see files #}
-            {%- set files = files|order_entries %}
-            {%- if files|has_previewable_files -%}
-              {%-set preview_file = files|select_preview_file(default_preview=record.files.default_preview) %}
-              {{ preview_file_box(preview_file, pid, is_preview, record) }}
-            {%- endif -%}
-            {{ file_list_box(files, pid, is_preview, record) }}
-          {% else %}
-            {# record has files BUT user cannot see files #}
-            <div class="panel-spacing">
-              <div class="ui accordion panel {{ record.ui.access_status.id }}" id="preview" href="#collapsablePreview">
-                <div class="active title panel-heading {{ record.ui.access_status.id }}">
-                  {{ _("Files") }}
-                  <i class="angle down icon"></i>
-                </div>
-                <div id="collapsablePreview" class="active content">
-                  <div class="ui {{ record.ui.access_status.message_class }} message file-box-message">
-                    <i class="ui {{ record.ui.access_status.icon }} icon"></i><b>{{ record.ui.access_status.title_l10n }}</b>
-                    <p>{{ record.ui.access_status.description_l10n }}</p>
-                    {% if record.access.embargo.reason %}
-                      <p>{{_("Reason")}}: {{record.access.embargo.reason}}</p>
-                    {% endif%}
-                  </div>
-                </div>
+        {%- if permissions.can_read_files -%}
+        {# record has files AND user can see files #}
+        {%- set files = files|order_entries %}
+        {%- if files|has_previewable_files -%}
+        {%-set preview_file = files|select_preview_file(default_preview=record.files.default_preview) %}
+        {{ preview_file_box(preview_file, pid, is_preview, record) }}
+        {%- endif -%}
+        {{ file_list_box(files, pid, is_preview, record) }}
+        {% else %}
+        {# record has files BUT user cannot see files #}
+        <div class="panel-spacing">
+          <div class="ui accordion panel {{ record.ui.access_status.id }}" id="preview" href="#collapsablePreview">
+            <div class="active title panel-heading {{ record.ui.access_status.id }}">
+              {{ _("Files") }}
+              <i class="angle down icon"></i>
+            </div>
+            <div id="collapsablePreview" class="active content">
+              <div class="ui {{ record.ui.access_status.message_class }} message file-box-message">
+                <i class="ui {{ record.ui.access_status.icon }} icon"></i><b>{{ record.ui.access_status.title_l10n }}</b>
+                <p>{{ record.ui.access_status.description_l10n }}</p>
+                {% if record.access.embargo.reason %}
+                <p>{{_("Reason")}}: {{record.access.embargo.reason}}</p>
+                {% endif%}
               </div>
             </div>
-          {%- endif %}
+          </div>
+        </div>
+        {%- endif %}
         {%- endif %}
         {%- endblock record_files -%}
 
         {%- block record_details -%}
         {# More details #}
         <div class="top-padded">
-        {%- include "invenio_app_rdm/records/details/details.html" %}
+          {%- include "invenio_app_rdm/records/details/details.html" %}
         </div>
         {%- endblock record_details -%}
         {%- block record_footer -%}
@@ -178,7 +178,9 @@
           <div class="centered row" id="jump-btn">
             <a style="cursor: pointer;">
               <span class="ui button">
-                <i class="arrow alternate circle up outline icon"></i>Jump up</span>
+                <i class="arrow alternate circle up outline icon"></i>
+                Jump up
+              </span>
             </a>
           </div>
         </div>
