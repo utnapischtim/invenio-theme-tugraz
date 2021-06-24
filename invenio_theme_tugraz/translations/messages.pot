@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: invenio-theme-tugraz 3.4.1\n"
 "Report-Msgid-Bugs-To: mojib.wali@tugraz.at\n"
-"POT-Creation-Date: 2021-06-22 13:39+0200\n"
+"POT-Creation-Date: 2021-06-24 15:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -321,7 +321,7 @@ msgid "TECHNOLOGY"
 msgstr ""
 
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/header_login.html:8
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:59
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:77
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/register_user.html:75
 msgid "Sign up"
 msgstr ""
@@ -334,30 +334,30 @@ msgstr ""
 msgid "Sign out"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:23
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:24
 msgid "Log in to Repository"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:29
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:38
 #, python-format
-msgid " Log in with %(type)s"
+msgid "Sign in with %(title)s"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:33
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:46
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/register_user.html:49
 msgid "Or"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:45
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:62
 msgid "Log In"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:58
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:76
 #, python-format
 msgid "New to %(sitename)s?"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:68
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:86
 msgid "Forgot password?"
 msgstr ""
 
