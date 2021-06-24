@@ -101,9 +101,7 @@
               {%- endfor %}
               <div>
                 <small>
-                  {% trans user=userprofile, date=creation_date | dateformat('long')%}
-                  Uploaded on {{date}}
-                  {% endtrans %}
+                  {{_("Uploaded on")}} {{creation_date | dateformat('long')}}
                 </small>
               </div>
             </div>

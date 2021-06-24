@@ -101,8 +101,8 @@
       <div class="doubling four column row">
         <div class="column">
           <div class="logos">
-            {% trans invenio_rdm="http://inveniosoftware.org/products/rdm" %}<strong>Powered by</strong>
-            <a href="{{invenio_rdm}}" target="_blank" title="invenioRDM">{% endtrans %}
+            <strong>{{_("Powered by")}}</strong>
+            <a href="http://inveniosoftware.org/products/rdm" target="_blank" title="invenioRDM">
               <br>
               <img src="{{ url_for('static', filename='images/inveniordm-tail.svg')}}" alt="invenioRDM" height="90px">
             </a>
@@ -110,8 +110,8 @@
         </div>
         <div class="column">
           <div class="logos">
-            {% trans fair_data="https://forschungsdaten.at/en/fair-data-austria/" %}<strong>Enabled by</strong>
-            <a href="{{fair_data}}" target="_blank" title="Fair Data Austria">{% endtrans %}
+            <strong>{{_("Enabled by")}}</strong>
+            <a href="https://forschungsdaten.at/en/fair-data-austria/" target="_blank" title="Fair Data Austria">
               <br>
               <img src="{{ url_for('static', filename='images/Fair_Data_Austria_orangerot.png')}}"
                    alt="Fair Data Austria"
@@ -124,8 +124,7 @@
 
         <div class="column">
           <div class="logos">
-            {% trans oea="https://www.openeducation.at" %}
-            <a href="{{oea}}" target="_blank" title="Open Education Austria">{% endtrans %}
+            <a href="https://www.openeducation.at" target="_blank" title="Open Education Austria">
               <br>
               <img src="{{ url_for('static', filename='images/oea.svg')}}"
                    alt="Open Education Austria"
@@ -141,8 +140,7 @@
       <div class="ui divider"></div>
       <div class="sixteen wide column">
         <div class="logos">
-          {% trans re3data="https://www.re3data.org/repository/r3d100013565" %}
-          <a href="{{re3data}}" target="_blank" title="Registry of Research Data Repositories">{% endtrans %}
+          <a href="https://www.re3data.org/repository/r3d100013565" target="_blank" title="Registry of Research Data Repositories">
             <img src="{{ url_for('static', filename='images/re3data.svg')}}"
                  alt="Registry of Research Data Repositories"
                  style="width: 300px; height: auto;">

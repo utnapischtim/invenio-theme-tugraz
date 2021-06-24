@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: invenio-theme-tugraz 3.4.1\n"
 "Report-Msgid-Bugs-To: mojib.wali@tugraz.at\n"
-"POT-Creation-Date: 2021-06-24 15:02+0200\n"
+"POT-Creation-Date: 2021-06-24 15:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -183,35 +183,11 @@ msgid "to change the font size."
 msgstr ""
 
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/footer.html:104
-#, python-format
-msgid ""
-"<strong>Powered by</strong>\n"
-"            <a href=\"%(invenio_rdm)s\" target=\"_blank\" "
-"title=\"invenioRDM\">"
+msgid "Powered by"
 msgstr ""
 
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/footer.html:113
-#, python-format
-msgid ""
-"<strong>Enabled by</strong>\n"
-"            <a href=\"%(fair_data)s\" target=\"_blank\" title=\"Fair Data"
-" Austria\">"
-msgstr ""
-
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/footer.html:127
-#, python-format
-msgid ""
-"\n"
-"            <a href=\"%(oea)s\" target=\"_blank\" title=\"Open Education "
-"Austria\">"
-msgstr ""
-
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/footer.html:144
-#, python-format
-msgid ""
-"\n"
-"          <a href=\"%(re3data)s\" target=\"_blank\" title=\"Registry of "
-"Research Data Repositories\">"
+msgid "Enabled by"
 msgstr ""
 
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/accounts_base.html:61
@@ -249,54 +225,50 @@ msgid "Resource type"
 msgstr ""
 
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:104
-#, python-format
-msgid ""
-"\n"
-"                  Uploaded on %(date)s\n"
-"                  "
+msgid "Uploaded on"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:117
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:115
 msgid "More"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:127
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:125
 msgid "Need help?"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:131
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:129
 msgid "Contact us"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:136
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:134
 msgid "prioritizes all Recent uploads."
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:139
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:137
 msgid "We can help with:"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:143
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:141
 msgid "Uploading your research data, software, preprints, etc."
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:144
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:142
 msgid "One-on-one with"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:144
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:142
 msgid "supporters."
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:145
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:143
 msgid "Quota increases beyond our default policy."
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:146
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:144
 msgid "Scripts for automated uploading of larger datasets."
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:151
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/index.html:149
 msgid "Why use"
 msgstr ""
 
@@ -321,7 +293,7 @@ msgid "TECHNOLOGY"
 msgstr ""
 
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/header_login.html:8
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:77
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:75
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/register_user.html:75
 msgid "Sign up"
 msgstr ""
@@ -338,26 +310,24 @@ msgstr ""
 msgid "Log in to Repository"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:38
-#, python-format
-msgid "Sign in with %(title)s"
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:37
+msgid "Sign in with"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:46
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:44
 #: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/register_user.html:49
 msgid "Or"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:62
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:60
 msgid "Log In"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:76
-#, python-format
-msgid "New to %(sitename)s?"
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:74
+msgid "New to"
 msgstr ""
 
-#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:86
+#: invenio_theme_tugraz/templates/invenio_theme_tugraz/accounts/login_user.html:84
 msgid "Forgot password?"
 msgstr ""
 
